@@ -93,7 +93,7 @@ const Registro = ({navigation}: RouterProps) => {
       <TextInput value={Direccion} style={styles.input} placeholder="Direccion de usuario" autoCapitalize="none" onChangeText={(text) => setDireccion(text)} />
       <TextInput value={Barrio} style={styles.input} placeholder="Barrio de usuario" autoCapitalize="none" onChangeText={(text) => setBarrio(text)} />
       <TextInput value={email} style={styles.input} placeholder="Correo electronico:" autoCapitalize="none" onChangeText={(text) => setEmail(text)} />
-      <TextInput value={password} style={styles.input} placeholder="Contraseña:" autoCapitalize="none" onChangeText={(text) => setPassword(text)} />
+      <TextInput value={password} style={styles.input} secureTextEntry={true} placeholder="Contraseña:" autoCapitalize="none" onChangeText={(text) => setPassword(text)} />
       </KeyboardAvoidingView>
 
       
