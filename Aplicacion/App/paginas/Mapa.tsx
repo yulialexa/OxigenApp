@@ -1,4 +1,4 @@
-import { View, Text, Image, Pressable, StyleSheet } from 'react-native';
+import { View, Text, Image, Pressable, StyleSheet, Animated } from 'react-native';
 import React from 'react';
 import { NavigationProp } from '@react-navigation/native';
 import { FIREBASE_AUTH } from '../../Firebase/config';
@@ -42,7 +42,7 @@ const styles = StyleSheet.create({
 
     borderColor: 'black',
     width: 350,
-    height: 460,
+    height: 560,
     alignItems: 'center',
     justifyContent: 'center',
     marginBottom: 20,

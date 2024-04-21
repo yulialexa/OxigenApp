@@ -85,6 +85,8 @@ const Registro = ({navigation}: RouterProps) => {
         </View>
       </Modal>
 
+
+    <View style={styles.headerContainer}>
       <Pressable
               onPress={() => navigation.navigate('Login')}
               style={({ pressed }) => {
@@ -93,15 +95,20 @@ const Registro = ({navigation}: RouterProps) => {
               <Image style={styles.icon} source={require('../../assets/atras.png')} />
         </Pressable>
 
-      <Text>¡Bienvenido!</Text>
-      <Text> "Descubre y transforma: Tu guía para reforestar áreas desafiantes.</Text>
+      </View>
+
+      <View style={styles.titulosContainer}>
+      <Text style={styles.titulo}>¡Bienvenido!</Text>
+      <Text style={styles.mensaje}>{`"Descubre y transforma:\n Tu guía para reforestar\n áreas desafiantes."`}</Text>
+      </View>
+
       <KeyboardAvoidingView behavior='padding'>
-      <TextInput value={nombre} style={styles.input} placeholder="Nombre:" autoCapitalize="none" onChangeText={(text) => setNombre(text)} />
-      <TextInput value={Apellido} style={styles.input} placeholder="Apellido:" autoCapitalize="none" onChangeText={(text) => setApellido(text)} />
-      <TextInput value={Direccion} style={styles.input} placeholder="Direccion de usuario" autoCapitalize="none" onChangeText={(text) => setDireccion(text)} />
-      <TextInput value={Barrio} style={styles.input} placeholder="Barrio de usuario" autoCapitalize="none" onChangeText={(text) => setBarrio(text)} />
-      <TextInput value={email} style={styles.input} placeholder="Correo electronico:" autoCapitalize="none" onChangeText={(text) => setEmail(text)} />
-      <TextInput value={password} style={styles.input} secureTextEntry={true} placeholder="Contraseña:" autoCapitalize="none" onChangeText={(text) => setPassword(text)} />
+      <TextInput value={nombre} style={styles.input} placeholderTextColor={'#765050C2'} placeholder="Nombre:" autoCapitalize="none" onChangeText={(text) => setNombre(text)} />
+      <TextInput value={Apellido} style={styles.input} placeholderTextColor={'#765050C2'} placeholder="Apellido:" autoCapitalize="none" onChangeText={(text) => setApellido(text)} />
+      <TextInput value={Direccion} style={styles.input} placeholderTextColor={'#765050C2'} placeholder="Direccion de usuario" autoCapitalize="none" onChangeText={(text) => setDireccion(text)} />
+      <TextInput value={Barrio} style={styles.input} placeholderTextColor={'#765050C2'} placeholder="Barrio de usuario" autoCapitalize="none" onChangeText={(text) => setBarrio(text)} />
+      <TextInput value={email} style={styles.input} placeholderTextColor={'#765050C2'} placeholder="Correo electronico:" autoCapitalize="none" onChangeText={(text) => setEmail(text)} />
+      <TextInput value={password} style={styles.input} placeholderTextColor={'#765050C2'} secureTextEntry={true} placeholder="Contraseña:" autoCapitalize="none" onChangeText={(text) => setPassword(text)} />
       </KeyboardAvoidingView>
 
       
@@ -110,11 +117,11 @@ const Registro = ({navigation}: RouterProps) => {
           ) : (
             <>
               <TouchableOpacity style={styles.button} onPress={singUp}>
-                <Text style={styles.buttonText}>Únete</Text>
+                <Text style={styles.buttonText}>Registrarse</Text>
               </TouchableOpacity>
             </>
           )}
-
+      <Text style={styles.signInText}>¿Ya tienes una cuenta?<Text style={styles.signInLink} onPress={() => navigation.navigate('Login')}> Ingresa</Text>.</Text>
     </View>
   )
 }
@@ -127,6 +134,27 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     backgroundColor: '#a2f1f8',
     position:'relative'
+  },
+  titulosContainer: {
+    marginTop:10,
+    marginBottom: 30,
+    textAlign: 'center',
+    alignItems: 'center'
+  },
+  titulo: {
+    fontSize: 20,
+    color: '#765050C2',
+    fontWeight: 'bold',
+  },
+  mensaje: {
+    fontSize: 13,
+    fontWeight: '500',
+    color: '#765050C2',
+    textAlign: 'center',
+  },
+  headerContainer: {
+    justifyContent: 'space-between',
+    padding: 10,
   },
   signInContainer: {
     position: 'absolute',
@@ -153,14 +181,16 @@ const styles = StyleSheet.create({
     fontWeight:'bold',
   },
   signInText: {
+    marginTop: 10,
     fontFamily:'Roboto',
     color:'#000000',
-    textAlign:'right',
+    textAlign:'center',
     fontSize:14,
   },
   signInLink: {
     fontWeight:'bold',
     color: 'black',
+    
   },
   h2:{
     fontFamily:'Roboto',
@@ -176,14 +206,16 @@ const styles = StyleSheet.create({
     fontFamily:'Roboto',
     marginVertical: 10,
     marginHorizontal: 65,
+    color: '#765050C2',
     height: 56,
     borderWidth: 0,
+    fontWeight: 'bold',
     borderRadius: 20,
     padding: 10,
     backgroundColor: '#d3d3d3'
   },
   button: {
-    backgroundColor: '#000000',
+    backgroundColor: '#2B7532',
     padding: 10,
     borderRadius: 5,
     marginHorizontal: 65,
@@ -193,6 +225,7 @@ const styles = StyleSheet.create({
   buttonText: {
     color: '#ffffff',
     fontSize: 14,
+    fontWeight: 'bold'
   },
   // Estilos para el modal
   centeredView: {
@@ -229,8 +262,9 @@ const styles = StyleSheet.create({
     textAlign: 'center'
   },
   icon: {
-    width: 45,
-    height: 45,
-    marginTop:20
+    margin: 10,
+    width: 35,
+    height: 25,
+    top: 1,
   },
 });

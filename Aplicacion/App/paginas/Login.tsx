@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { ActivityIndicator, View, Text, Image, StyleSheet, TextInput, KeyboardAvoidingView, TouchableOpacity, Dimensions } from 'react-native';
+import { ActivityIndicator, View, Text, Image, StyleSheet, TextInput, KeyboardAvoidingView, TouchableOpacity, Dimensions, useWindowDimensions } from 'react-native';
 import { NavigationProp } from '@react-navigation/native';
 import { signInWithEmailAndPassword } from 'firebase/auth';
 import { FIREBASE_AUTH } from '../../Firebase/config';
@@ -9,6 +9,7 @@ interface RouterProps {
 }
 
 const Login = ({ navigation }: RouterProps) => {
+  const windowWidth = useWindowDimensions().width; // Obtener el ancho de la ventana
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [loading, setLoading] = useState(false);
@@ -37,9 +38,9 @@ const Login = ({ navigation }: RouterProps) => {
 
   return (
     <KeyboardAvoidingView behavior="padding" style={styles.container}>
-      <Image style={styles.logo} source={require("../../assets/Logo.png")} />
-      <View style={styles.titleContainer}> {/* Nuevo contenedor */}
-        <Text style={styles.title}>OXIGEN APP</Text> {/* Texto del título */}
+      <Image style={[styles.logo, { width: windowWidth * 0.5, height: windowWidth * 0.5 }]} source={require("../../assets/Logo.png")} />
+      <View style={styles.titleContainer}>
+        <Text style={styles.title}>{`OXIGEN\nAPP`}</Text>
       </View>
       <Text>¡Bienvenido!</Text>
       <View style={styles.formContainer}>
@@ -47,6 +48,7 @@ const Login = ({ navigation }: RouterProps) => {
           style={styles.input}
           value={email}
           placeholder='Ingrese su email:'
+          placeholderTextColor={'#765050C2'}
           autoCapitalize='none'
           onChangeText={(text) => setEmail(text)}
         />
@@ -55,6 +57,7 @@ const Login = ({ navigation }: RouterProps) => {
           style={styles.input}
           value={password}
           placeholder='Ingrese su contraseña:'
+          placeholderTextColor={'#765050C2'}
           autoCapitalize='none'
           onChangeText={(text) => setPassword(text)}
         />
@@ -92,23 +95,23 @@ const styles = StyleSheet.create({
     marginTop: 50,
     alignItems: 'center',
   },
-  titleContainer: { // Estilos para el contenedor del título
-    backgroundColor: '#2B7532', // Color verde de fondo
+  titleContainer: {
+    backgroundColor: '#2B7532',
     padding: 10,
-    width: '30%',
-    height: '10%',
+    width: '50%',
+    height: '12%',
     borderRadius: 10,
     marginBottom: 20,
+    alignItems: 'center', // Agregar esta línea para centrar horizontalmente
+    justifyContent: 'center', // Agregar esta línea para centrar verticalmente
   },
-  title: { // Estilos para el texto del título
-    color: '#FFFFFF', // Texto en blanco
-    fontSize: 27,
+  title: {
+    color: '#FFFFFF',
+    fontSize: 20,
     fontWeight: 'bold',
     textAlign: 'center',
   },
   logo: {
-    width: Dimensions.get('window').width*0.5,
-    height: Dimensions.get('window').width * 0.5,
     marginBottom: 20,
   },
   input: {
