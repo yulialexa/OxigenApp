@@ -1,6 +1,6 @@
 import { NavigationProp } from '@react-navigation/native';
 import React, { useState } from 'react';
-import { ActivityIndicator, KeyboardAvoidingView, StyleSheet, Text, TextInput, TouchableOpacity, View, Modal, Pressable } from 'react-native';
+import { ActivityIndicator, KeyboardAvoidingView, StyleSheet, Text, TextInput, TouchableOpacity, View, Modal, Pressable, Image } from 'react-native';
 import { createUserWithEmailAndPassword, sendEmailVerification, } from 'firebase/auth';
 import { addDoc, collection } from 'firebase/firestore';
 import { FIREBASE_AUTH, FIRESTORE_DB } from '../../Firebase/config';
@@ -84,6 +84,14 @@ const Registro = ({navigation}: RouterProps) => {
           </View>
         </View>
       </Modal>
+
+      <Pressable
+              onPress={() => navigation.navigate('Login')}
+              style={({ pressed }) => {
+                return { opacity: pressed ? 0 : 1 };
+              }}>
+              <Image style={styles.icon} source={require('../../assets/atras.png')} />
+        </Pressable>
 
       <Text>¡Bienvenido!</Text>
       <Text> "Descubre y transforma: Tu guía para reforestar áreas desafiantes.</Text>
@@ -219,5 +227,10 @@ const styles = StyleSheet.create({
   modalText: {
     marginBottom: 15,
     textAlign: 'center'
-  }
+  },
+  icon: {
+    width: 45,
+    height: 45,
+    marginTop:20
+  },
 });
