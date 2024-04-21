@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { ActivityIndicator, View, Text, Image, StyleSheet, TextInput, KeyboardAvoidingView, TouchableOpacity, Dimensions, useWindowDimensions } from 'react-native';
+import { SafeAreaView, ScrollView, View, Text, Image, StyleSheet, TextInput, KeyboardAvoidingView, TouchableOpacity, useWindowDimensions, ActivityIndicator } from 'react-native';
 import { NavigationProp } from '@react-navigation/native';
 import { signInWithEmailAndPassword } from 'firebase/auth';
 import { FIREBASE_AUTH } from '../../Firebase/config';
@@ -38,45 +38,49 @@ const Login = ({ navigation }: RouterProps) => {
 
   return (
     <KeyboardAvoidingView behavior="padding" style={styles.container}>
-      <Image style={[styles.logo, { width: windowWidth * 0.5, height: windowWidth * 0.5 }]} source={require("../../assets/Logo.png")} />
-      <View style={styles.titleContainer}>
-        <Text style={styles.title}>{`OXIGEN\nAPP`}</Text>
-      </View>
-      <Text>¡Bienvenido!</Text>
-      <View style={styles.formContainer}>
-        <TextInput
-          style={styles.input}
-          value={email}
-          placeholder='Ingrese su email:'
-          placeholderTextColor={'#765050C2'}
-          autoCapitalize='none'
-          onChangeText={(text) => setEmail(text)}
-        />
-        <TextInput
-          secureTextEntry={true}
-          style={styles.input}
-          value={password}
-          placeholder='Ingrese su contraseña:'
-          placeholderTextColor={'#765050C2'}
-          autoCapitalize='none'
-          onChangeText={(text) => setPassword(text)}
-        />
-        {loading ? (
-          <ActivityIndicator size="large" color="#0000" />
-        ) : (
-          <>
-            <TouchableOpacity style={styles.button2} onPress={goToRecuperarConstraseña}>
-              <Text style={styles.buttonText2}>¿Olvidó su Contraseña?</Text>
-            </TouchableOpacity>
-            <TouchableOpacity style={styles.button1} onPress={singIn}>
-              <Text style={styles.buttonText}>Entrar</Text>
-            </TouchableOpacity>
-            <TouchableOpacity style={styles.button2} onPress={goToRegister}>
-              <Text style={styles.buttonText2}>¡Inscribete!</Text>
-            </TouchableOpacity>
-          </>
-        )}
-      </View>
+      <SafeAreaView style={{ flex: 1, marginTop: 20 }}>
+        <ScrollView contentContainerStyle={styles.scrollContainer}>
+          <Image style={styles.logo} source={require("../../assets/Logo.png")} />
+          <View style={styles.titleContainer}>
+            <Text style={styles.title}>{`OXIGEN\nAPP`}</Text>
+          </View>
+          <Text>¡Bienvenido!</Text>
+          <View style={styles.formContainer}>
+            <TextInput
+              style={styles.input}
+              value={email}
+              placeholder='Ingrese su email:'
+              placeholderTextColor={'#765050C2'}
+              autoCapitalize='none'
+              onChangeText={(text) => setEmail(text)}
+            />
+            <TextInput
+              secureTextEntry={true}
+              style={styles.input}
+              value={password}
+              placeholder='Ingrese su contraseña:'
+              placeholderTextColor={'#765050C2'}
+              autoCapitalize='none'
+              onChangeText={(text) => setPassword(text)}
+            />
+            {loading ? (
+              <ActivityIndicator size="large" color="#0000" />
+            ) : (
+              <>
+                <TouchableOpacity style={styles.button2} onPress={goToRecuperarConstraseña}>
+                  <Text style={styles.buttonText2}>¿Olvidó su Contraseña?</Text>
+                </TouchableOpacity>
+                <TouchableOpacity style={styles.button1} onPress={singIn}>
+                  <Text style={styles.buttonText}>Entrar</Text>
+                </TouchableOpacity>
+                <TouchableOpacity style={styles.button2} onPress={goToRegister}>
+                  <Text style={styles.buttonText2}>¡Inscribete!</Text>
+                </TouchableOpacity>
+              </>
+            )}
+          </View>
+        </ScrollView>
+      </SafeAreaView>
     </KeyboardAvoidingView>
   );
 };
@@ -87,6 +91,9 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#EEEEEE',
+  },
+  scrollContainer: {
+    flexGrow: 1,
     alignItems: 'center',
     justifyContent: 'center',
   },
@@ -102,8 +109,8 @@ const styles = StyleSheet.create({
     height: '12%',
     borderRadius: 10,
     marginBottom: 20,
-    alignItems: 'center', // Agregar esta línea para centrar horizontalmente
-    justifyContent: 'center', // Agregar esta línea para centrar verticalmente
+    alignItems: 'center',
+    justifyContent: 'center',
   },
   title: {
     color: '#FFFFFF',
@@ -113,6 +120,9 @@ const styles = StyleSheet.create({
   },
   logo: {
     marginBottom: 20,
+    width: '70%',
+    height: '40%',
+    resizeMode: 'contain',
   },
   input: {
     marginVertical: 10,

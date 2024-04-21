@@ -1,4 +1,4 @@
-import { View, Text, Image, Pressable, StyleSheet, Animated } from 'react-native';
+import { View, Text, Image, Pressable, StyleSheet, Animated, SafeAreaView } from 'react-native';
 import React from 'react';
 import { NavigationProp } from '@react-navigation/native';
 import { FIREBASE_AUTH } from '../../Firebase/config';
@@ -11,6 +11,7 @@ const Mapa = ({ navigation }: RouterProps) => {
   return (
     
     <View >
+      <SafeAreaView style={{ flex: 1, marginTop: 20 }}> 
       <Pressable
         onPress={() => FIREBASE_AUTH.signOut()}
         style={({ pressed }) => {
@@ -22,6 +23,7 @@ const Mapa = ({ navigation }: RouterProps) => {
       <View style={styles.mapContainer}>
         <Image style={styles.mapaStyle} source={require("../../assets/MAPA OXIGENAPP.png")} />
       </View>
+      </SafeAreaView>
     </View>
   );
 };

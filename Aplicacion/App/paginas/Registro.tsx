@@ -1,6 +1,6 @@
 import { NavigationProp } from '@react-navigation/native';
 import React, { useState } from 'react';
-import { ActivityIndicator, KeyboardAvoidingView, StyleSheet, Text, TextInput, TouchableOpacity, View, Modal, Pressable, Image } from 'react-native';
+import { SafeAreaView ,ActivityIndicator, KeyboardAvoidingView, StyleSheet, Text, TextInput, TouchableOpacity, View, Modal, Pressable, Image } from 'react-native';
 import { createUserWithEmailAndPassword, sendEmailVerification, } from 'firebase/auth';
 import { addDoc, collection } from 'firebase/firestore';
 import { FIREBASE_AUTH, FIRESTORE_DB } from '../../Firebase/config';
@@ -85,7 +85,7 @@ const Registro = ({navigation}: RouterProps) => {
         </View>
       </Modal>
 
-
+      <SafeAreaView style={{ flex: 1, marginTop: 20 }}> 
     <View style={styles.headerContainer}>
       <Pressable
               onPress={() => navigation.navigate('Login')}
@@ -122,6 +122,7 @@ const Registro = ({navigation}: RouterProps) => {
             </>
           )}
       <Text style={styles.signInText}>¿Ya tienes una cuenta?<Text style={styles.signInLink} onPress={() => navigation.navigate('Login')}> Ingresa</Text>.</Text>
+      </SafeAreaView>
     </View>
   )
 }
