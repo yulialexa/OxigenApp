@@ -3,8 +3,7 @@ import React from 'react';
 import { NavigationProp } from '@react-navigation/native';
 import { FIREBASE_AUTH } from '../../Firebase/config';
 import IndicadorZonas from '../../Components/IndicadorZonas';
-import ZonaVerde from './Zonas/ZonaVerde';
-import ZonaRosa from './Zonas/ZonaRosa';
+
 
 interface RouterProps {
   navigation: NavigationProp<any, any>;
