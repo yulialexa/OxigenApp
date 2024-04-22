@@ -87,6 +87,7 @@ const Registro = ({navigation}: RouterProps) => {
 
       <SafeAreaView style={{marginTop: 20 }}> 
     <View style={styles.headerContainer}>
+    <View style={styles.iconContainer}>
       <Pressable
               onPress={() => navigation.navigate('Login')}
               style={({ pressed }) => {
@@ -94,6 +95,7 @@ const Registro = ({navigation}: RouterProps) => {
               }}>
               <Image style={styles.icon} source={require('../../assets/atras.png')} />
         </Pressable>
+      </View>
 
       </View>
 
@@ -268,4 +270,11 @@ const styles = StyleSheet.create({
     height: 25,
     top: 1,
   },
+  iconContainer: {
+    width: 35,
+    height: 25,
+    margin: 10,
+    top: 1,
+  },
+  
 });

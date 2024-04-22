@@ -1,48 +1,80 @@
-import { View, Text, Image, Pressable, StyleSheet, Animated, SafeAreaView } from 'react-native';
+import { View, Text, Image, Pressable, StyleSheet, SafeAreaView } from 'react-native';
 import React from 'react';
 import { NavigationProp } from '@react-navigation/native';
 import { FIREBASE_AUTH } from '../../Firebase/config';
 import IndicadorZonas from '../../Components/IndicadorZonas';
-
+import ZonaVerde from './Zonas/ZonaVerde';
+import ZonaRosa from './Zonas/ZonaRosa';
 
 interface RouterProps {
   navigation: NavigationProp<any, any>;
 }
 
 const Mapa = ({ navigation }: RouterProps) => {
-
-  const indicadorData = {
-    imagen: '../../assets/zonaVerde.png',
-    titulo: 'Título del indicador',
+  const indicadorVerde = {
+    imagen: require('../../assets/zonaVerde.png'), // Cambio aquí
+    titulo: 'Título del indicador Verde',
     descripcion: 'Descripción del indicador',
+    inicio: 800,
+    duracion: 3000
   };
 
-  const handleVerMasInfo = () => {
-    return navigation.navigate('Login')
+  const indicadorRosa = {
+    imagen: require('../../assets/zonaRosada.png'), // Cambio aquí
+    titulo: 'Título del indicador Rosa',
+    descripcion: 'Descripción del indicador',
+    inicio: 1500,
+    duracion: 3000
+  };
+
+  const indicadorAzul = {
+    imagen: require('../../assets/zonaAzul.png'), // Cambio aquí
+    titulo: 'Título del indicador Azul',
+    descripcion: 'Descripción del indicador',
+    inicio: 2100,
+    duracion: 3000
+  };
+
+  const handleVerMasInfoVerde = () => {
+    return navigation.navigate('ZonaVerde')
+  };
+
+  const handleVerMasInfoRosa = () => {
+    return navigation.navigate('ZonaRosa')
+  };
+
+  const handleVerMasInfoAzul = () => {
+    return navigation.navigate('ZonaAzul')
   };
 
   return (
-    
-    <View >
-      <SafeAreaView style={{marginTop: '10%' }}> 
+    <View>
+      <SafeAreaView style={{ marginTop: '10%' }}>
+        <View style={styles.iconContainer}>
+          <Pressable
+            onPress={() => FIREBASE_AUTH.signOut()}
+            style={({ pressed }) => {
+              return { opacity: pressed ? 0 : 1 };
+            }}>
+            <Image style={styles.icon} source={require('../../assets/atras.png')} />
+          </Pressable>
+        </View>
 
-      <Pressable
-        onPress={() => FIREBASE_AUTH.signOut()}
-        style={({ pressed }) => {
-          return { opacity: pressed ? 0 : 1 };
-        }}>
-        <Image style={styles.icon} source={require('../../assets/atras.png')} />
-      </Pressable>
-      
+        <View style={styles.mapContainer}>
+          <View style={styles.ZonaVerde}>
+            <IndicadorZonas indicador={indicadorVerde} verMasInfo={handleVerMasInfoVerde} />
+          </View>
 
+          <View style={styles.ZonaRosa}>
+            <IndicadorZonas indicador={indicadorRosa} verMasInfo={handleVerMasInfoRosa} />
+          </View>
 
-        
-      <View style={styles.mapContainer}>
-      <IndicadorZonas indicador={indicadorData} verMasInfo={handleVerMasInfo} />
-        <Image style={styles.mapaStyle} source={require("../../assets/MAPA OXIGENAPP.png")} />
+          <View style={styles.ZonaAzul}>
+            <IndicadorZonas indicador={indicadorAzul} verMasInfo={handleVerMasInfoAzul} />
+          </View>
 
-      </View>
-
+          <Image style={styles.mapaStyle} source={require("../../assets/MAPA OXIGENAPP.png")} />
+        </View>
       </SafeAreaView>
     </View>
   );
@@ -51,7 +83,27 @@ const Mapa = ({ navigation }: RouterProps) => {
 export default Mapa;
 
 const styles = StyleSheet.create({
-
+  ZonaVerde: {
+    top: '10%',
+    right: '3%',
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  ZonaRosa: {
+    top: '32%',
+    left: '26%',
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  ZonaAzul: {
+    top: '55%',
+    right: '10%',
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
   icon: {
     margin: 10,
     width: 35,
@@ -65,16 +117,19 @@ const styles = StyleSheet.create({
     width: 350,
     height: 560,
     top: 20,
-    
     alignItems: 'center',
     justifyContent: 'center',
-
   },
-
   mapaStyle: {
     width: '100%',
     height: '100%',
     borderRadius: 8,
     zIndex: -1,
+  },
+  iconContainer: {
+    width: 35,
+    height: 25,
+    margin: 10,
+    top: 1,
   },
 });

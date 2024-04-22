@@ -4,9 +4,11 @@ import * as Animatable from 'react-native-animatable';
 
 interface IndicadorProps {
   indicador: {
-    imagen: string;
+    imagen: any;
     titulo: string;
     descripcion: string;
+    inicio: number;
+    duracion: number;
   };
   verMasInfo: () => void;
 }
@@ -14,28 +16,35 @@ interface IndicadorProps {
 const IndicadorZonas: React.FC<IndicadorProps> = ({ indicador, verMasInfo }) => {
   const [modalVisible, setModalVisible] = useState(false);
 
+  const cerrarModal = () => {
+    setModalVisible(false);
+  };
+
   return (
-    <View style={styles.container}>
-      <TouchableOpacity onPress={() => setModalVisible(true)}>
-        <Animatable.Image
-          animation="bounceIn"
-          iterationCount="infinite"
-          duration={2000}
-          source={{ uri: indicador.imagen }}
-          style={styles.indicador}
-        />
-      </TouchableOpacity>
+    <View>
+      <View style={styles.touchableView}>
+        <TouchableOpacity onPress={() => setModalVisible(true)}>
+          <Animatable.Image
+            animation="bounceIn"
+            iterationCount="infinite"
+            duration={indicador.duracion}
+            delay={indicador.inicio}
+            source={indicador.imagen}
+            style={styles.indicador}
+          />
+        </TouchableOpacity>
+      </View>
 
       <Modal visible={modalVisible} animationType="slide">
         <View style={styles.modalContent}>
           <Text style={styles.modalTitle}>{indicador.titulo}</Text>
           <Text style={styles.modalDescription}>{indicador.descripcion}</Text>
 
-          <TouchableOpacity onPress={() => setModalVisible(false)} style={styles.modalButton}>
+          <TouchableOpacity onPress={cerrarModal} style={styles.modalButton}>
             <Text style={styles.modalButtonText}>Cerrar</Text>
           </TouchableOpacity>
 
-          <TouchableOpacity onPress={verMasInfo} style={styles.modalButton}>
+          <TouchableOpacity onPress={() => { cerrarModal(); verMasInfo(); }} style={[styles.modalButton, styles.infoButton]}>
             <Text style={styles.modalButtonText}>Más información</Text>
           </TouchableOpacity>
         </View>
@@ -47,13 +56,6 @@ const IndicadorZonas: React.FC<IndicadorProps> = ({ indicador, verMasInfo }) => 
 export default IndicadorZonas;
 
 const styles = StyleSheet.create({
-  container: {
-    top: '15%',
-    right: '3%',
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
   indicador: {
     width: 50,
     height: 80,
@@ -76,7 +78,8 @@ const styles = StyleSheet.create({
   },
   modalButton: {
     backgroundColor: '#007AFF',
-    padding: 10,
+    paddingVertical: 8,
+    paddingHorizontal: 12,
     borderRadius: 5,
     marginBottom: 10,
   },
@@ -84,5 +87,11 @@ const styles = StyleSheet.create({
     color: 'white',
     fontWeight: 'bold',
     textAlign: 'center',
+  },
+  touchableView: {
+    alignItems: 'center',
+  },
+  infoButton: {
+    backgroundColor: '#5cb85c', // Cambio de color para el botón de información
   },
 });
