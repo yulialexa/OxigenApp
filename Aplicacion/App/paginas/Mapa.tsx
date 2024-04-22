@@ -2,16 +2,30 @@ import { View, Text, Image, Pressable, StyleSheet, Animated, SafeAreaView } from
 import React from 'react';
 import { NavigationProp } from '@react-navigation/native';
 import { FIREBASE_AUTH } from '../../Firebase/config';
+import IndicadorZonas from '../../Components/IndicadorZonas';
+
 
 interface RouterProps {
   navigation: NavigationProp<any, any>;
 }
 
 const Mapa = ({ navigation }: RouterProps) => {
+
+  const indicadorData = {
+    imagen: '../../assets/zonaVerde.png',
+    titulo: 'Título del indicador',
+    descripcion: 'Descripción del indicador',
+  };
+
+  const handleVerMasInfo = () => {
+    return navigation.navigate('Login')
+  };
+
   return (
     
     <View >
-      <SafeAreaView style={{ flex: 1, marginTop: 20 }}> 
+      <SafeAreaView style={{marginTop: '10%' }}> 
+
       <Pressable
         onPress={() => FIREBASE_AUTH.signOut()}
         style={({ pressed }) => {
@@ -19,10 +33,16 @@ const Mapa = ({ navigation }: RouterProps) => {
         }}>
         <Image style={styles.icon} source={require('../../assets/atras.png')} />
       </Pressable>
+      
 
+
+        
       <View style={styles.mapContainer}>
+      <IndicadorZonas indicador={indicadorData} verMasInfo={handleVerMasInfo} />
         <Image style={styles.mapaStyle} source={require("../../assets/MAPA OXIGENAPP.png")} />
+
       </View>
+
       </SafeAreaView>
     </View>
   );
@@ -41,18 +61,20 @@ const styles = StyleSheet.create({
   mapContainer: {
     alignSelf: 'center',
     borderWidth: 2,
-
     borderColor: 'black',
     width: 350,
     height: 560,
+    top: 20,
+    
     alignItems: 'center',
     justifyContent: 'center',
-    marginBottom: 20,
+
   },
 
   mapaStyle: {
     width: '100%',
     height: '100%',
     borderRadius: 8,
+    zIndex: -1,
   },
 });

@@ -1,12 +1,12 @@
 import { View, Text } from 'react-native'
 import React from 'react'
 
-const zonaSur = () => {
+const ZonaRosa = () => {
   return (
     <View>
-      <Text>zonaSur</Text>
+      <Text>ZonaRosa</Text>
     </View>
   )
 }
 
-export default zonaSur
+export default ZonaRosa

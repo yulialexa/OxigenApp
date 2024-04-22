@@ -85,7 +85,7 @@ const Registro = ({navigation}: RouterProps) => {
         </View>
       </Modal>
 
-      <SafeAreaView style={{ flex: 1, marginTop: 20 }}> 
+      <SafeAreaView style={{marginTop: 20 }}> 
     <View style={styles.headerContainer}>
       <Pressable
               onPress={() => navigation.navigate('Login')}
