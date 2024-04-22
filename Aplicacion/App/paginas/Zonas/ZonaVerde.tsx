@@ -4,7 +4,7 @@ import React from 'react'
 const ZonaVerde = () => {
   return (
     <View>
-      <Text>ZonaVerde</Text>
+      <Text>Posee una fertilidad alta gracias a sus suelos ricos en nutrientes, clima favorable, abundancia de agua y acceso a tecnología agrícola.</Text>
     </View>
   )
 }
