@@ -6,7 +6,7 @@ interface IndicadorProps {
   indicador: {
     imagen: any;
     titulo: string;
-    descripcion: string;
+    comuna: string[];
     inicio: number;
     duracion: number;
   };
@@ -38,7 +38,7 @@ const IndicadorZonas: React.FC<IndicadorProps> = ({ indicador, verMasInfo }) => 
       <Modal visible={modalVisible} animationType="slide">
         <View style={styles.modalContent}>
           <Text style={styles.modalTitle}>{indicador.titulo}</Text>
-          <Text style={styles.modalDescription}>{indicador.descripcion}</Text>
+          <Text style={styles.modalDescription}>COMUNA: {indicador.comuna.join(', ')}</Text>
 
           <TouchableOpacity onPress={cerrarModal} style={styles.modalButton}>
             <Text style={styles.modalButtonText}>Cerrar</Text>

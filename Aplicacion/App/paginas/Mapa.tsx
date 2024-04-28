@@ -12,24 +12,24 @@ interface RouterProps {
 const Mapa = ({ navigation }: RouterProps) => {
   const indicadorVerde = {
     imagen: require('../../assets/zonaVerde.png'), // Cambio aquí
-    titulo: 'Título del indicador Verde',
-    descripcion: 'Descripción del indicador',
+    titulo: 'Zonas Verdes de Cali',
+    comuna: ['1', '2', '20', '11'],
     inicio: 800,
     duracion: 3000
   };
 
   const indicadorRosa = {
     imagen: require('../../assets/zonaRosada.png'), // Cambio aquí
-    titulo: 'Título del indicador Rosa',
-    descripcion: 'Descripción del indicador',
+    titulo: 'Zonas Poco Fertilizadas',
+    comuna: ['3', '9', '10', '12', '13', '14', '15', '16', '18', '21'],
     inicio: 1500,
     duracion: 3000
   };
 
   const indicadorAzul = {
     imagen: require('../../assets/zonaAzul.png'), // Cambio aquí
-    titulo: 'Título del indicador Azul',
-    descripcion: 'Descripción del indicador',
+    titulo: 'Zona de Renamiento Verde',
+    comuna: ['4', '5', '6', '7', '8', '17', '19', '22'],
     inicio: 2100,
     duracion: 3000
   };
