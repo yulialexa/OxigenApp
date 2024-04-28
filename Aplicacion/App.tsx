@@ -2,7 +2,7 @@ import React, {useState, useEffect} from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { User, onAuthStateChanged } from 'firebase/auth';
-import { FIREBASE_AUTH } from '../../OxigenApp/Aplicacion/Firebase/config';
+import { FIREBASE_AUTH } from './Firebase/config';
 
 import Login from './App/paginas/Login';
 import Registro from './App/paginas/Registro';
