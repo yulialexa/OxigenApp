@@ -10,6 +10,8 @@ import Mapa from './App/paginas/Mapa';
 import ZonaVerde from './App/paginas/Zonas/ZonaVerde';
 import ZonaRosa from './App/paginas/Zonas/ZonaRosa';
 import ZonaAzul from './App/paginas/Zonas/ZonaAzul';
+import OlvidarContraseña from './App/paginas/OlvidarContraseña';
+
 
 const Stack = createNativeStackNavigator();
 const StackInterna = createNativeStackNavigator();
@@ -44,7 +46,7 @@ export default function App() {
     <Stack.Navigator initialRouteName="Login">
       {user ? (<Stack.Screen name='Interno' component={DiseñoInterno} options={{headerShown: false}} />):
       ( <Stack.Screen name="Login" component={Login} options={{headerShown:false}} />)  }
-      
+      <Stack.Screen name='olvidarContraseña' component={OlvidarContraseña} options={{headerShown: false}}/>
       <Stack.Screen name="Registro" component={Registro} options={{headerShown:false}} />
       
     </Stack.Navigator>

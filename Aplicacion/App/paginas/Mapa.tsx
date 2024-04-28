@@ -4,7 +4,6 @@ import { NavigationProp } from '@react-navigation/native';
 import { FIREBASE_AUTH } from '../../Firebase/config';
 import IndicadorZonas from '../../Components/IndicadorZonas';
 
-
 interface RouterProps {
   navigation: NavigationProp<any, any>;
 }
@@ -59,9 +58,10 @@ const Mapa = ({ navigation }: RouterProps) => {
           </Pressable>
         </View>
 
-        <Text style={styles.titulo}>Tipo de fertilidad</Text>
-
-        <Text style={styles.textotitulo}>¡Haz Clic y averigua que puedes plantar en tu zona!</Text> 
+        <View style={styles.textoContainer}>
+          <Text style={styles.titulo}>Tipo de fertilidad</Text>
+          <Text style={styles.textotitulo}>¡Presiona cualquiera de las Zonas y averigua qué puedes plantar en tu zona!</Text> 
+        </View>
 
         <View style={styles.mapContainer}>
           <View style={styles.ZonaVerde}>
@@ -87,12 +87,20 @@ export default Mapa;
 
 const styles = StyleSheet.create({
   titulo:{
-    left: '10%'
+    fontWeight : 'bold',
+    alignSelf: 'center',
   },
   textotitulo:{
-    left: '10%'
+    top: '10%'
   },
-
+  textoContainer:{
+    backgroundColor: '#FFFFFF', // color rosa pálid
+    alignContent: 'center',
+    padding: 10,
+    borderRadius: 8,
+    left: '7%',
+    width: '85%'
+  },
   ZonaVerde: {
     top: '10%',
     right: '3%',
@@ -141,5 +149,6 @@ const styles = StyleSheet.create({
     height: 25,
     margin: 10,
     top: 1,
+    marginBottom: 40
   },
 });

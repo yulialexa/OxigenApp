@@ -54,7 +54,7 @@ const styles = StyleSheet.create({
     top: 1,
   },
   fertilidadContainer: {
-    backgroundColor: '#FADDF7', // color rosa pálid
+    backgroundColor: '#AED6F1', 
     alignSelf: 'center',
     padding: 10,
     borderRadius: 8,

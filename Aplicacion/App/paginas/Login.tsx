@@ -9,7 +9,7 @@ interface RouterProps {
 }
 
 const Login = ({ navigation }: RouterProps) => {
-  const windowWidth = useWindowDimensions().width; // Obtener el ancho de la ventana
+ // Obtener el ancho de la ventana
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [loading, setLoading] = useState(false);
@@ -29,7 +29,7 @@ const Login = ({ navigation }: RouterProps) => {
   };
 
   const goToRecuperarConstraseña = () => {
-    navigation.navigate('RecuperarContraseña');
+    navigation.navigate('olvidarContraseña');
   };
 
   const goToRegister = () => {

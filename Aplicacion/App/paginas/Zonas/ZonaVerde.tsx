@@ -1,33 +1,43 @@
 import { View, Text, SafeAreaView, Pressable, StyleSheet, Image } from 'react-native'
 import React from 'react'
 import { NavigationProp } from '@react-navigation/native';
+import PlantaImagen from '../../../Components/PlantaImagen';
 
 interface RouterProps {
   navigation: NavigationProp<any, any>;
 }
 
-const ZonaVerde = ({navigation}: RouterProps) => {
+const ZonaVerde = ({ navigation }: RouterProps) => {
+
+  const imagen1 = {
+    titulo: 'Titulo',
+    descripcion: 'Descripcion',
+    imagen: require('../../../assets/Logo.png')
+  }
+
   return (
     <View>
-      
+
       <SafeAreaView style={{ marginTop: '10%' }}>
 
-      <View style={styles.iconContainer}>
-      <Pressable
-              onPress={() => navigation.navigate('Mapa')}
-              style={({ pressed }) => {
-                return { opacity: pressed ? 0 : 1 };
-              }}>
-              <Image style={styles.icon} source={require('../../../assets/atras.png')} />
-        </Pressable>
-      </View>
+        <View style={styles.iconContainer}>
+          <Pressable
+            onPress={() => navigation.navigate('Mapa')}
+            style={({ pressed }) => {
+              return { opacity: pressed ? 0 : 1 };
+            }}>
+            <Image style={styles.icon} source={require('../../../assets/atras.png')} />
+          </Pressable>
+        </View>
 
-      <Text style={styles.titulo} >ZONA VERDE</Text>
+        <Text style={styles.titulo} >ZONA VERDE</Text>
 
-      <View style={styles.fertilidadContainer}>       
-      <Text style={styles.fertilidadText}>Posee una fertilidad alta gracias a sus suelos ricos en nutrientes, clima favorable, abundancia de agua y acceso a tecnología agrícola.</Text>
-      </View>
-      
+        <View style={styles.fertilidadContainer}>
+          <Text style={styles.fertilidadText}>Posee una fertilidad alta gracias a sus suelos ricos en nutrientes, clima favorable, abundancia de agua y acceso a tecnología agrícola.</Text>
+        </View>
+
+        <PlantaImagen info={imagen1} />
+
       </SafeAreaView>
     </View>
   )
@@ -54,7 +64,7 @@ const styles = StyleSheet.create({
     top: 1,
   },
   fertilidadContainer: {
-    backgroundColor: '#FADDF7', // color rosa pálid
+    backgroundColor: '#5cb85c', // color rosa pálid
     alignSelf: 'center',
     padding: 10,
     borderRadius: 8,
