@@ -2,9 +2,6 @@ import { View, Text, TouchableOpacity, StyleSheet } from 'react-native'
 import React from 'react'
 import { NavigationProp } from '@react-navigation/native';
 
-
-
-
 interface botonProps {
     info: {
     Titulo : String;
@@ -12,8 +9,6 @@ interface botonProps {
     color: String;
     }
 }
-
-
 
 const BotonComuna: React.FC<botonProps> = ({info}) => {
 
