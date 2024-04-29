@@ -20,7 +20,6 @@ const BotonComuna: React.FC<botonProps> = ({info}) => {
             borderRadius: 10,
             backgroundColor: `${info.color}`,
             alignItems: 'center',
-            fontFamily: 'lucida grande',
             justifyContent: 'center'
         }
     })

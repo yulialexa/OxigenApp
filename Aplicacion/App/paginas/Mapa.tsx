@@ -60,7 +60,7 @@ const Mapa = ({ navigation }: RouterProps) => {
 
         <View style={styles.textoContainer}>
           <Text style={styles.titulo}>Tipo de fertilidad</Text>
-          <Text style={styles.textotitulo}>¡Presiona cualquiera de las Zonas y averigua qué puedes plantar en tu zona!</Text> 
+          <Text style={styles.textotitulo}>¡Presiona cualquier parte y averigua qué planta y flores hay en la sucursal!</Text> 
         </View>
 
         <View style={styles.mapContainer}>
