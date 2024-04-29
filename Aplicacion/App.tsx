@@ -2,7 +2,8 @@ import React, {useState, useEffect} from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { User, onAuthStateChanged } from 'firebase/auth';
-import { FIREBASE_AUTH } from './Firebase/config';
+import { getDoc, doc } from 'firebase/firestore';
+import { FIREBASE_AUTH, FIRESTORE_DB } from './Firebase/config';
 
 import Login from './App/paginas/Login';
 import Registro from './App/paginas/Registro';
@@ -23,14 +24,36 @@ const Stack = createNativeStackNavigator();
 const StackInterna = createNativeStackNavigator();
 
 
-function DiseñoInterno() {
+
+  function diseñoInterno({ route }: { route: any }) {
+    const { user } = route.params;
+    
+    // Aquí puedes acceder a las propiedades del usuario guardadas en Firestore
+    const [userData, setUserData] = useState<any>(null);
+    const firestore = FIRESTORE_DB;
+  
+    useEffect(() => {
+      const getUserData = async () => {
+        try {
+          const userDoc = await getDoc(doc(firestore, 'usuarios', user.uid)); // Suponiendo que 'usuarios' es la colección donde guardas los datos del usuario
+          if (userDoc.exists()) {
+            setUserData(userDoc.data());
+          }
+        } catch (error) {
+          console.error('Error fetching user data:', error);
+        }
+      };
+  
+      getUserData();
+    }, [firestore, user.uid]);
+
   return(
     
     <StackInterna.Navigator>
         <StackInterna.Screen name='Mapa' component={Mapa} options={{title: 'Mapa', headerShown:false}}/> 
-        <StackInterna.Screen name='ZonaVerde' component={ZonaVerde} options={{title: 'ZonaVerde', headerShown:false}}/> 
-        <StackInterna.Screen name='ZonaRosa' component={ZonaRosa} options={{title: 'ZonaRosa', headerShown:false}}/> 
-        <StackInterna.Screen name='ZonaAzul' component={ZonaAzul} options={{title: 'ZonaAzul', headerShown:false}}/> 
+        <StackInterna.Screen name='ZonaVerde' component={ZonaVerde} initialParams={{user, userData}} options={{title: 'ZonaVerde', headerShown:false}}/> 
+        <StackInterna.Screen name='ZonaRosa' component={ZonaRosa} initialParams={{user, userData}} options={{title: 'ZonaRosa', headerShown:false}}/> 
+        <StackInterna.Screen name='ZonaAzul' component={ZonaAzul} initialParams={{user, userData}} options={{title: 'ZonaAzul', headerShown:false}}/> 
 
         {/* Comunas Verdes Stacks */}
         <StackInterna.Screen name='Comuna1' component={Comuna1} options={{headerShown: false}}/>
@@ -45,29 +68,29 @@ function DiseñoInterno() {
 
 
 
-
 export default function App() {
   const [user, setUser] = useState<User | null>(null);
 
   useEffect(() => {
-    onAuthStateChanged(FIREBASE_AUTH, (user) => {
+    const unsubscribe = onAuthStateChanged(FIREBASE_AUTH, (user) => {
       console.log('user', user);
       setUser(user);
-      });
-    }, [])
+    });
+    return unsubscribe;
+  }, []);
 
 
-  return (<NavigationContainer>
-
+  return (
+  <NavigationContainer>
     <Stack.Navigator initialRouteName="Login">
-      {user ? (<Stack.Screen name='Interno' component={DiseñoInterno} options={{headerShown: false}} />):
+      {user ? (<Stack.Screen name='Interno' component={diseñoInterno} initialParams={{user}} options={{headerShown: false}} />):
       ( <Stack.Screen name="Login" component={Login} options={{headerShown:false}} />)  }
       <Stack.Screen name='olvidarContraseña' component={OlvidarContraseña} options={{headerShown: false}}/>
-      <Stack.Screen name="Registro" component={Registro} options={{headerShown:false}} />
-      
+      <Stack.Screen name="Registro" component={Registro} options={{headerShown:false}} />  
     </Stack.Navigator>
 
-  </NavigationContainer>);
+  </NavigationContainer>
+  );
    
 }
 

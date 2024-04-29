@@ -2,7 +2,7 @@ import { NavigationProp } from '@react-navigation/native';
 import React, { useState } from 'react';
 import { SafeAreaView ,ActivityIndicator, KeyboardAvoidingView, StyleSheet, Text, TextInput, TouchableOpacity, View, Modal, Pressable, Image } from 'react-native';
 import { createUserWithEmailAndPassword, sendEmailVerification, } from 'firebase/auth';
-import { addDoc, collection } from 'firebase/firestore';
+import { doc, setDoc } from 'firebase/firestore';
 import { FIREBASE_AUTH, FIRESTORE_DB } from '../../Firebase/config';
 
 interface RouterProps {
@@ -12,6 +12,7 @@ interface RouterProps {
 const Registro = ({navigation}: RouterProps) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [username, setUsername] = useState('');
   const [nombre, setNombre] = useState('');
   const [Apellido, setApellido] = useState('');
   const [Barrio, setBarrio] = useState('');
@@ -31,7 +32,9 @@ const Registro = ({navigation}: RouterProps) => {
           console.log(response);
           // Verificar usuario con el correo
           await sendEmailVerification(auth.currentUser);
+          const userUID = auth.currentUser.uid; // Obtén la UID del usuario autenticado
           setModalVisible(true); // Mostrar el modal de verificación
+          activateAccount(userUID); // Llama a la función para activar la cuenta y guardar los datos en Firestore
         })
         .catch((error) => {
           console.log(error);
@@ -47,10 +50,11 @@ const Registro = ({navigation}: RouterProps) => {
     }
   };
 
-  const activateAccount = async () => {
+  const activateAccount = async (userUID: string) => {
     try {
       // Guardar los datos en Firestore
-      await addDoc(collection(firestore, 'usuarios'), {email: email , Nombre: nombre, Apellido: Apellido, Barrio: Barrio, Direccion: Direccion });
+      const userRef = doc(firestore, 'usuarios', userUID); // Crear una referencia al documento con la UID del usuario
+      await setDoc(userRef, { username: username, email: email , nombre, Apellido, Barrio, Direccion }); // Guardar los datos en el documento
       navigation.navigate('Interno'); // Redirigir a la navegación de inicio de sesión
     } catch (error) {
       console.log(error);
@@ -76,7 +80,7 @@ const Registro = ({navigation}: RouterProps) => {
               style={[styles.button, styles.buttonClose]}
               onPress={() => {
                 setModalVisible(!modalVisible);
-                activateAccount(); // Llamar a la función para activar la cuenta y guardar los datos en Firestore
+
               }}
             >
               <Text style={styles.textStyle}>Cerrar</Text>
@@ -105,6 +109,7 @@ const Registro = ({navigation}: RouterProps) => {
       </View>
 
       <KeyboardAvoidingView behavior='padding'>
+      <TextInput value={username} style={styles.input}  placeholderTextColor={'#765050C2'} placeholder='Usuario' autoCapitalize='none' onChangeText={(text) => setUsername(text)} /> 
       <TextInput value={nombre} style={styles.input} placeholderTextColor={'#765050C2'} placeholder="Nombre:" autoCapitalize="none" onChangeText={(text) => setNombre(text)} />
       <TextInput value={Apellido} style={styles.input} placeholderTextColor={'#765050C2'} placeholder="Apellido:" autoCapitalize="none" onChangeText={(text) => setApellido(text)} />
       <TextInput value={Direccion} style={styles.input} placeholderTextColor={'#765050C2'} placeholder="Direccion de usuario" autoCapitalize="none" onChangeText={(text) => setDireccion(text)} />
