@@ -12,7 +12,7 @@ const Mapa = ({ navigation }: RouterProps) => {
   const indicadorVerde = {
     imagen: require('../../assets/zonaVerde.png'), // Cambio aquí
     titulo: 'Zonas Verdes de Cali',
-    comuna: ['1', '2', '20', '11'],
+    comuna: ['1', '2', '11', '20'],
     inicio: 800,
     duracion: 3000
   };

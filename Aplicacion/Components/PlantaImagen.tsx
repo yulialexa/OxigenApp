@@ -22,7 +22,7 @@ const PlantaImagen: React.FC<PlantaImagenProps> = ({ info }) => {
 const styles = StyleSheet.create({
   contenedor: {
     width: '40%',
-    height: '50%',
+    height: 250,
     marginTop: '2%',
     padding: 9,
     alignSelf: 'center',

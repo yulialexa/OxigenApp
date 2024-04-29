@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { SafeAreaView, ScrollView, View, Text, Image, StyleSheet, TextInput, KeyboardAvoidingView, TouchableOpacity, useWindowDimensions, ActivityIndicator } from 'react-native';
+import { SafeAreaView, ScrollView, View, Text, Image, StyleSheet, TextInput, KeyboardAvoidingView, TouchableOpacity,  ActivityIndicator } from 'react-native';
 import { NavigationProp } from '@react-navigation/native';
 import { signInWithEmailAndPassword } from 'firebase/auth';
 import { FIREBASE_AUTH } from '../../Firebase/config';
@@ -9,7 +9,6 @@ interface RouterProps {
 }
 
 const Login = ({ navigation }: RouterProps) => {
- // Obtener el ancho de la ventana
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [loading, setLoading] = useState(false);
