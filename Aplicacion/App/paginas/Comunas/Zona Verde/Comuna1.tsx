@@ -23,7 +23,20 @@ const Comuna1 = ({navigation}: RouterProps) => {
 
       </SafeAreaView>
     )},
+    {key: 'body', Component: (
+      <View style={styles.body}> 
+        <Text style={styles.TituloConocenos}>Conócenos </Text>
+        <Text style={styles.subtituloConocenos}>!Consulta que tipo de plantas adornan hoy la Sucursal del cielo !</Text>
+        
 
+        {/* VOY HASTA AQUI */}
+        <View >
+          <View style={styles.rosaComuna1}>
+             <Image style={styles.imgRosa} source={require('../../../../assets/Comuna1/RosaComuna1.jpg')}/>
+          </View>
+        </View>
+      </View>
+    )},
   ]
 
   return (
@@ -39,61 +52,53 @@ const Comuna1 = ({navigation}: RouterProps) => {
 export default Comuna1
 
 const styles = StyleSheet.create({
-  Contenedortitulo: {
-    backgroundColor: '#FFFFFF',
-    alignContent: 'center',
-    padding: 10,
-    borderRadius: 8,
-    marginTop: '6%',
-    left: '7%',
-    width: '85%'
-  },
-  semititulobotones:{
-    width: 300,
-    height: 65,
-    alignSelf: 'center',
-    marginBottom: 20,
-  },
-  letraSemi:{
-    textAlign: 'center',
-      fontSize: 20
-  },
 
-  contenedorBotonesColumna: {
-    flexDirection: 'row', // Establece la dirección de los elementos en fila
-    justifyContent: 'space-between', // Espacio uniforme entre los elementos
-    paddingHorizontal: '10%', // Añade un margen horizontal para separar los botones
-  },
   icon: {
     margin: 10,
     width: 35,
     height: 25,
     top: 1,
   },
-  titulo: {
-    color: 'green',
-    fontWeight: 'bold',
-    textAlign: 'center',
-    alignSelf: 'center'
-  },
+
   iconContainer: {
     width: 35,
     height: 25,
     margin: 10,
     top: 1,
   },
-  fertilidadContainer: {
+
+  body: {
+    top: '5%',
+  },
+
+  TituloConocenos: {
+    left: '5%',
+    fontSize: 25,
+  },
+
+  subtituloConocenos:{
+      top: '2%', 
+      left: '8%',
+      marginRight: '10%',
+      fontSize: 20,
+  },
+
+  rosaComuna1:{
+    top: '20%',
+    left: '4%',
     backgroundColor: '#5cb85c',
-    alignSelf: 'center',
-    padding: 10,
-    borderRadius: 8,
-    marginTop: 20,
-    marginBottom: 20,
-    width: '70%'
+    width: '52%',
+    height: '85%',
+    alignItems: 'center',
+    justifyContent: 'center',
+
+
   },
-  fertilidadText: {
-    fontSize: 16,
-    textAlign: 'center',
-    color: '#333',
-  },
+
+  imgRosa:{
+      height: '90%',
+      width: '80%',
+  } ,
+
+
 });
