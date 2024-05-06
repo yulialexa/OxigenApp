@@ -22,13 +22,13 @@ const ZonaVerde = ({ navigation }: RouterProps) => {
   };
 
   const botonComuna3 = {
-    Titulo: 'COMUNA 3',
+    Titulo: 'COMUNA 11',
     funcion: () => { navigation.navigate('Comuna11'); },
     color: '#5cb85c'
   };
 
   const botonComuna4 = {
-    Titulo: 'COMUNA 4',
+    Titulo: 'COMUNA 20',
     funcion: () => { navigation.navigate('Comuna20'); },
     color: '#5cb85c'
   };

@@ -1,6 +1,6 @@
 import { NavigationProp } from '@react-navigation/native';
 import React, { useState } from 'react';
-import { SafeAreaView ,ActivityIndicator, KeyboardAvoidingView, StyleSheet, Text, TextInput, TouchableOpacity, View, Modal, Pressable, Image } from 'react-native';
+import { SafeAreaView ,ActivityIndicator, KeyboardAvoidingView, StyleSheet, Text, TextInput, TouchableOpacity, View, Modal, Pressable, Image, ScrollView } from 'react-native';
 import { createUserWithEmailAndPassword, sendEmailVerification, } from 'firebase/auth';
 import { doc, setDoc } from 'firebase/firestore';
 import { FIREBASE_AUTH, FIRESTORE_DB } from '../../Firebase/config';
@@ -64,7 +64,8 @@ const Registro = ({navigation}: RouterProps) => {
 
 
   return (
-    <View>
+
+    <View style={styles.container}>
       <Modal
         animationType="slide"
         transparent={true}
@@ -130,6 +131,7 @@ const Registro = ({navigation}: RouterProps) => {
           )}
       <Text style={styles.signInText}>¿Ya tienes una cuenta?<Text style={styles.signInLink} onPress={() => navigation.navigate('Login')}> Ingresa</Text>.</Text>
       </SafeAreaView>
+
     </View>
   )
 }
@@ -140,7 +142,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: 'center',
-    backgroundColor: '#a2f1f8',
     position:'relative'
   },
   titulosContainer: {

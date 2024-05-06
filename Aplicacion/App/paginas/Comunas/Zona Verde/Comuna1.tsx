@@ -1,12 +1,48 @@
 import { View, Text, SafeAreaView, Pressable, Image, StyleSheet, FlatList } from 'react-native'
-import React, { Component } from 'react'
+import React from 'react'
 import { NavigationProp } from '@react-navigation/native';
+import ImagenPlanta from '../../../../Components/plantas/ImagenPlanta';
+import PlantaImagen from '../../../../Components/plantas/PlantaImagen';
 
 interface RouterProps {
   navigation: NavigationProp<any, any>;
 }
 
 const Comuna1 = ({navigation}: RouterProps) => {
+
+  const dataImagenRosa = {
+    imagen: require('../../../../assets/Comuna1/RosaComuna1.jpg'),
+    nombre: 'Rosa',
+    descripcion: 'Flor popular en todo el mundo, con una gran variedad de colores y fragancias.',
+    color: '#8EFFA3',
+    colorDescripcion: '#5cb85c'
+  }
+
+  const dataImagenBromelia = {
+    nombre: 'Bromelias',
+    imagen: require('../../../../assets/Comuna1/bromeliaComuna1.png'),
+    descripcion: 'Son conocidas por sus hojas coloridas y sus flores únicas. Ambas plantas son epífitas, lo que significa que crecen sobre otras plantas.',
+    color: '#8EFFA3',
+    colorDescripcion: '#5cb85c'
+  }
+
+  const dataImagenLaurel = {
+    nombre: `Laurel de cera\n (Myrica cerifera)`,
+    imagen: require('../../../../assets/Comuna1/LaurelComuna1.jpg'),
+    descripcion: ' Árbol nativo de la región del Pacífico colombiano, utilizado en la elaboración de velas. Guamo (Inga edulis): Árbol frutal con vainas comestibles.',
+    color: '#8EFFA3',
+    colorDescripcion: '#5cb85c'
+  }
+
+  const dataImagenJazmin = {
+    nombre: 'Jazmín (Jasminum)',
+    imagen: require('../../../../assets/Comuna1/JazminComuna1.jpg'),
+    descripcion: 'Enredadera trepadora con flores fragantes que florecen en primavera.',
+    color: '#8EFFA3',
+    colorDescripcion: '#5cb85c'
+  }
+
+
 
   const data = [
     {key: 'header', Component: (
@@ -26,15 +62,20 @@ const Comuna1 = ({navigation}: RouterProps) => {
     {key: 'body', Component: (
       <View style={styles.body}> 
         <Text style={styles.TituloConocenos}>Conócenos </Text>
-        <Text style={styles.subtituloConocenos}>!Consulta que tipo de plantas adornan hoy la Sucursal del cielo !</Text>
-        
 
-        {/* VOY HASTA AQUI */}
-        <View >
-          <View style={styles.rosaComuna1}>
-             <Image style={styles.imgRosa} source={require('../../../../assets/Comuna1/RosaComuna1.jpg')}/>
-          </View>
+        <Text style={styles.subtituloConocenos}>!Consulta que tipo de plantas adornan hoy la Sucursal del cielo !</Text>  
+        
+       <View style={styles.contenedorImagenPlanta}>
+        <ImagenPlanta info={dataImagenRosa}/>
+
+        <PlantaImagen info={dataImagenBromelia}/>
+ 
+        <ImagenPlanta info={dataImagenLaurel}/>
+
+        <PlantaImagen info={dataImagenJazmin}/>
+
         </View>
+
       </View>
     )},
   ]
@@ -68,37 +109,26 @@ const styles = StyleSheet.create({
   },
 
   body: {
-    top: '5%',
+    flex: 1,
+    top: 40,
+    width: 400,
+    height: 1800,
   },
 
   TituloConocenos: {
-    left: '5%',
+    left: 20,
     fontSize: 25,
   },
 
   subtituloConocenos:{
-      top: '2%', 
+      top: 3, 
       left: '8%',
       marginRight: '10%',
       fontSize: 20,
   },
 
-  rosaComuna1:{
-    top: '20%',
-    left: '4%',
-    backgroundColor: '#5cb85c',
-    width: '52%',
-    height: '85%',
-    alignItems: 'center',
-    justifyContent: 'center',
-
-
-  },
-
-  imgRosa:{
-      height: '90%',
-      width: '80%',
-  } ,
-
+  contenedorImagenPlanta: {
+    bottom: 25,
+  }
 
 });
