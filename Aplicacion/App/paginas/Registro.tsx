@@ -109,7 +109,7 @@ const Registro = ({navigation}: RouterProps) => {
       <Text style={styles.mensaje}>{`"Descubre y transforma:\n Tu guía para reforestar\n áreas desafiantes."`}</Text>
       </View>
 
-      <KeyboardAvoidingView behavior='padding'>
+      <KeyboardAvoidingView behavior='position'>
       <TextInput value={username} style={styles.input}  placeholderTextColor={'#765050C2'} placeholder='Usuario' autoCapitalize='none' onChangeText={(text) => setUsername(text)} /> 
       <TextInput value={nombre} style={styles.input} placeholderTextColor={'#765050C2'} placeholder="Nombre:" autoCapitalize="none" onChangeText={(text) => setNombre(text)} />
       <TextInput value={Apellido} style={styles.input} placeholderTextColor={'#765050C2'} placeholder="Apellido:" autoCapitalize="none" onChangeText={(text) => setApellido(text)} />
@@ -119,7 +119,6 @@ const Registro = ({navigation}: RouterProps) => {
       <TextInput value={password} style={styles.input} placeholderTextColor={'#765050C2'} secureTextEntry={true} placeholder="Contraseña:" autoCapitalize="none" onChangeText={(text) => setPassword(text)} />
       </KeyboardAvoidingView>
 
-      
       {loading ? (
             <ActivityIndicator size="large" color="#0000ff" />
           ) : (
@@ -129,7 +128,9 @@ const Registro = ({navigation}: RouterProps) => {
               </TouchableOpacity>
             </>
           )}
+
       <Text style={styles.signInText}>¿Ya tienes una cuenta?<Text style={styles.signInLink} onPress={() => navigation.navigate('Login')}> Ingresa</Text>.</Text>
+  
       </SafeAreaView>
 
     </View>
@@ -165,13 +166,7 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     padding: 10,
   },
-  signInContainer: {
-    position: 'absolute',
-    bottom: '82%',
-    width: '100%',
-    paddingHorizontal: 65,
-    zIndex:2
-  },
+
   whiteSheet: {
     width: '100%',
     height: '80%',
@@ -213,7 +208,7 @@ const styles = StyleSheet.create({
   },
   input: {
     fontFamily:'Roboto',
-    marginVertical: 10,
+    marginVertical: 5,
     marginHorizontal: 65,
     color: '#765050C2',
     height: 56,
