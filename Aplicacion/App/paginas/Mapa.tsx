@@ -50,7 +50,7 @@ const Mapa = ({ navigation }: RouterProps) => {
       <SafeAreaView style={{ marginTop: '10%' }}>
         <View style={styles.iconContainer}>
           <Pressable
-            onPress={() => FIREBASE_AUTH.signOut() && navigation.navigate('Login')}
+            onPress={() => FIREBASE_AUTH.signOut() }
             style={({ pressed }) => {
               return { opacity: pressed ? 0 : 1 };
             }}>

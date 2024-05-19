@@ -7,6 +7,7 @@ import { getDoc } from 'firebase/firestore';
 interface propComentario{
   info:{
     colorBase: String
+    DataBaseZona: String
   }
 }
 
@@ -46,7 +47,7 @@ const Comentarios: React.FC<propComentario> = ({info}) => {
 
   useEffect(() => {
     const unsubscribe = onSnapshot(
-      query(collection(FIRESTORE_DB, 'comentarios'), orderBy("fecha")),
+      query(collection(FIRESTORE_DB, `${info.DataBaseZona}`), orderBy("fecha")),
       (snapshot) => {
         const updateComentarios = snapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }));
         setComentarios(updateComentarios);
@@ -74,7 +75,7 @@ const Comentarios: React.FC<propComentario> = ({info}) => {
       };
 
       try {
-        await addDoc(collection(FIRESTORE_DB, 'comentarios'), comentario);
+        await addDoc(collection(FIRESTORE_DB, `${info.DataBaseZona}`), comentario);
         setNuevoComentario("");
       } catch (error) {
         console.error("Error al agregar el comentario: ", error);
@@ -84,7 +85,7 @@ const Comentarios: React.FC<propComentario> = ({info}) => {
 
   const eliminarComentario = async (comentarioId) => {
     try {
-      await deleteDoc(doc(FIRESTORE_DB, 'comentarios', comentarioId));
+      await deleteDoc(doc(FIRESTORE_DB, `${info.DataBaseZona}`, comentarioId));
     } catch (error) {
       console.error("Error al eliminar el comentario:", error);
     }
@@ -92,7 +93,7 @@ const Comentarios: React.FC<propComentario> = ({info}) => {
 
   const editarComentario = async (comentarioId, nuevoTexto) => {
     try {
-      await updateDoc(doc(FIRESTORE_DB, 'comentarios', comentarioId), { texto: nuevoTexto });
+      await updateDoc(doc(FIRESTORE_DB, `${info.DataBaseZona}`, comentarioId), { texto: nuevoTexto });
     } catch (error) {
       console.error("Error al editar el comentario:", error);
     }

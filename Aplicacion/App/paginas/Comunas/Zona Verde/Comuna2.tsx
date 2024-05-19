@@ -101,8 +101,6 @@ const styles = StyleSheet.create({
   body: {
     flex: 1,
     top: 40,
-    width: 400,
-    height: 1800,
   },
 
   TituloConocenos: {
@@ -118,7 +116,7 @@ const styles = StyleSheet.create({
   },
 
   contenedorImagenPlanta: {
-    bottom: 25,
+
   }
 
 });

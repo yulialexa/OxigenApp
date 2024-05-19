@@ -43,7 +43,8 @@
     };
 
     const colorComentario = {
-      colorBase: '#5cb85c'
+      colorBase: '#5cb85c',
+      DataBaseZona: 'ComentariosZonaVerde'
     }
 
     return (

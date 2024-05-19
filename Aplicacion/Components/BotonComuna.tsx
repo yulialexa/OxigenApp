@@ -15,12 +15,16 @@ const BotonComuna: React.FC<botonProps> = ({info}) => {
     const styles = StyleSheet.create({
         contenedorBoton: {
             margin: 10,
+            padding: 2,
             width: 150,
             height: 150,
             borderRadius: 10,
             backgroundColor: `${info.color}`,
             alignItems: 'center',
-            justifyContent: 'center'
+            justifyContent: 'center',
+        },
+        texto: {
+          textAlign: 'center'
         }
     })
 
@@ -28,7 +32,7 @@ const BotonComuna: React.FC<botonProps> = ({info}) => {
   return (
     <TouchableOpacity style={styles.contenedorBoton} onPress={info.funcion}>
     <View>
-          <Text>{info.Titulo}</Text>
+          <Text style= {styles.texto}>{info.Titulo}</Text>
     </View>
   </TouchableOpacity>
   )

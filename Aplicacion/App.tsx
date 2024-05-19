@@ -17,6 +17,10 @@ import Comuna1 from './App/paginas/Comunas/Zona Verde/Comuna1';
 import Comuna2 from './App/paginas/Comunas/Zona Verde/Comuna2';
 import Comuna11 from './App/paginas/Comunas/Zona Verde/Comuna11';
 import Comuna20 from './App/paginas/Comunas/Zona Verde/Comuna20';
+//PlantasYfloresZonaRosa
+import PlantasYFloresZonaRosa from './App/paginas/Comunas/ZonaRosa/PlantasYFloresZonaRosa';
+//PlantasYfloresZonaAzul
+import PlantasYFloresZonaAzul from './App/paginas/Comunas/ZonaAzul/PlantasYFloresZonaAzul';
 
 
 
@@ -61,6 +65,11 @@ const StackInterna = createNativeStackNavigator();
         <StackInterna.Screen name='Comuna11' component={Comuna11} options={{headerShown: false}}/>
         <StackInterna.Screen name='Comuna20' component={Comuna20} options={{headerShown: false}}/>
 
+        {/* Plantas y flores Zona Rosa */}
+        <StackInterna.Screen name='PlantasYFloresZonaRosa' component={PlantasYFloresZonaRosa} options={{headerShown: false}}/>
+
+        {/* Plantas y flores Zona Azul */}
+        <StackInterna.Screen name='PlantasYFloresZonaAzul' component={PlantasYFloresZonaAzul} options={{headerShown: false}}/>
 
     </StackInterna.Navigator>
   )

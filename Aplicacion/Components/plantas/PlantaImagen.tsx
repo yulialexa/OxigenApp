@@ -1,89 +1,83 @@
-import { View, Text, StyleSheet, Image } from 'react-native'
-import React from 'react'
+import React from 'react';
+import { View, Text, StyleSheet, Image } from 'react-native';
 
-interface propsImagenPlanta {
-    info: {
-        nombre: string;
-        imagen: any;
-        descripcion: string;
-        color: string;
-        colorDescripcion: string;
-    }
+interface PropsImagenPlanta {
+  info: {
+    nombre: string;
+    imagen: any;
+    descripcion: string;
+    color: string;
+    colorDescripcion: string;
+  };
 }
 
-const PlantaImagen: React.FC<propsImagenPlanta> = ({info}) => {
+const PlantaImagen: React.FC<PropsImagenPlanta> = ({ info }) => {
   return (
-    <View style={styles.body}> 
-
-    <View style={styles.columnaImagen}>
-      <Text style={styles.textoImagenLado}> {info.nombre} </Text>
-        <View style={[styles.contenedorImagen, {backgroundColor: `${info.color}`}]}>
-        <Image style={styles.img} source={info.imagen}/>
+    <View style={styles.body}>
+      <View style={styles.columnaImagen}>
+        <View style={styles.contenedorTextoImagen}>
+          <Text style={styles.textoImagenLado} accessibilityLabel={`Nombre de la planta: ${info.nombre}`}>
+            {info.nombre}
+          </Text>
+        </View>
+        <View style={[styles.contenedorImagen, { backgroundColor: info.color }]}>
+          <Image 
+            style={styles.img} 
+            source={info.imagen} 
+            resizeMode="contain" 
+            accessibilityLabel={`${info.nombre} image`}
+          />
+        </View>
+      </View>
+      <View style={[styles.dataPlanta, { backgroundColor: info.colorDescripcion }]}>
+        <Text style={styles.textoPlanta} accessibilityLabel={`Descripción de la planta: ${info.descripcion}`}>
+          {info.descripcion}
+        </Text>
       </View>
     </View>
-
-    <View style={[styles.dataPlanta, {backgroundColor: `${info.colorDescripcion}`}]}>
-          <Text style={styles.textoplanta}>{info.descripcion}</Text>
-    </View>
-  </View>
-  )
-}
-
+  );
+};
 
 const styles = StyleSheet.create({
-
-    body: {
-      bottom: '2%',
-      width: 360,
-      height: 250,
-      alignSelf: 'center',
-      marginBottom: 70,
-    },
-  
-  
-    columnaImagen: {
-      top: '20%',
-      marginBottom: '12%',
-      height: '80%',
-      width: '70%',
-      flexDirection: 'row',
-      alignItems: 'center',
+  body: {
+    width: '90%',
+    alignSelf: 'center',
+    justifyContent: 'center',
+    marginBottom: 60,
   },
-  
-      contenedorImagen:{
-      borderRadius: 10,
-      backgroundColor: '#5cb85c',
-      left: '10%',
-      width: 210,
-      height: 250,
-      alignItems: 'center',
-      justifyContent: 'center',
-    },
-  
-    img:{
-        height: '90%',
-        width: '80%',
-    } ,
-  
-    textoImagenLado: {  
-      width: '50%',
-      fontSize: 17,
-      fontWeight: 'bold',
-      textAlign: 'center',
-    },
+  columnaImagen: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginVertical: 20,
+  },
+  contenedorImagen: {
+    borderRadius: 10,
+    flex: 1,
+    height: 250,
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginLeft: 10,  // Cambiado a margen izquierdo
+  },
+  img: {
+    height: '100%',
+    width: '100%',
+  },
+  contenedorTextoImagen: {
+    flex: 1,
+    marginRight: 10,  // Cambiado a margen derecho
+  },
+  textoImagenLado: {
+    textAlign: 'center',
+    fontSize: 17,
+    fontWeight: 'bold',
+  },
+  dataPlanta: {
+    padding: 10,
+    borderRadius: 10,
+  },
+  textoPlanta: {
+    fontSize: 17,
+  },
+});
 
-    dataPlanta: {
-      top: '30%',
-      right: '2%',
-      width: '100%',
-      padding: '2%',
-      backgroundColor: '#5cb85c',
-    },
-    textoplanta: {
-      fontSize: 17
-    }
-  
-  });
-  
-
-  export default PlantaImagen
+export default PlantaImagen;
