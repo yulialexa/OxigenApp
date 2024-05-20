@@ -21,6 +21,9 @@ import Comuna20 from './App/paginas/Comunas/Zona Verde/Comuna20';
 import PlantasYFloresZonaRosa from './App/paginas/Comunas/ZonaRosa/PlantasYFloresZonaRosa';
 //PlantasYfloresZonaAzul
 import PlantasYFloresZonaAzul from './App/paginas/Comunas/ZonaAzul/PlantasYFloresZonaAzul';
+import { LogBox } from 'react-native';
+LogBox.ignoreAllLogs(true);
+
 
 
 
