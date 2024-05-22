@@ -29,8 +29,15 @@
     },
     "extra": {
       "eas": {
-        "projectId": "efa24d90-e177-411d-b01e-fb2545a58053"
+        "projectId": "1ce19b10-8945-4428-a834-b40014cdb5b4"
       }
+    },
+    "owner": "juanpython1",
+    "runtimeVersion": {
+      "policy": "appVersion"
+    },
+    "updates": {
+      "url": "https://u.expo.dev/1ce19b10-8945-4428-a834-b40014cdb5b4"
     }
   }
 }

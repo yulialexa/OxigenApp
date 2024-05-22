@@ -94,7 +94,7 @@ const Registro = ({navigation}: RouterProps) => {
     <View style={styles.headerContainer}>
     <View style={styles.iconContainer}>
       <Pressable
-              onPress={() => navigation.navigate('Login')}
+              onPress={() => navigation.goBack()}
               style={({ pressed }) => {
                 return { opacity: pressed ? 0 : 1 };
               }}>
@@ -129,7 +129,7 @@ const Registro = ({navigation}: RouterProps) => {
             </>
           )}
 
-      <Text style={styles.signInText}>¿Ya tienes una cuenta?<Text style={styles.signInLink} onPress={() => navigation.navigate('Login')}> Ingresa</Text>.</Text>
+      <Text style={styles.signInText}>¿Ya tienes una cuenta?<Text style={styles.signInLink} onPress={() => navigation.goBack()}> Ingresa</Text>.</Text>
   
       </SafeAreaView>
 

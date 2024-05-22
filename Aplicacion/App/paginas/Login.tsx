@@ -29,7 +29,7 @@ const Login = ({ navigation }: RouterProps) => {
   };
 
   const goToRecuperarConstraseña = () => {
-    navigation.navigate('olvidarContraseña');
+    navigation.navigate('OlvidarContraseña');
   };
 
   const goToRegister = () => {
